@@ -1,0 +1,276 @@
+/* Basic Reset */
+body, h1, p, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Light gray background */
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    background: rgba(0, 0, 0, 0.8); /* Darker background for better contrast */
+    padding: 15px 20px; /* Increased padding for better spacing */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar-left .logo {
+    font-size: 2em; /* Increased font size for better visibility */
+    font-weight: bold;
+    color: #fff; /* White text for better contrast */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+.navbar-center h2 {
+    font-size: 1.4em;
+    color: #fff; /* White text */
+    margin: 0;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-button {
+    background: linear-gradient(45deg, #434343, #555555, #777777); 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.nav-button.glow::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 70%);
+    animation: glow 2s infinite;
+    transition: all 0.5s;
+}
+
+@keyframes glow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Main Content Styling */
+.main-content {
+    margin-top: 80px; /* Adjust according to navbar height */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Post Feed Container */
+#post-feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Post Styling */
+.post {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover Effect for Posts */
+.post:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+/* Default Post Layout (Image on Top, Content Below) */
+.post-img-container {
+    width: 100%;
+    height: 200px; /* Fixed height for images */
+}
+
+.post-img-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.post-details {
+    padding: 15px;
+    flex: 1; /* Ensures it grows to fill space */
+}
+
+/* Clicked Post Layout (Image on the Left, Content on the Right) */
+.post.clicked-layout {
+    flex-direction: column;
+}
+
+.post.clicked-layout .post-img-container {
+    flex: 1;
+    max-width: 50%;
+}
+
+.post.clicked-layout .post-details {
+    flex: 2;
+    padding: 15px;
+}
+
+.post-title {
+    font-size: 1.6em;
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+.post-text {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.post-username,
+.post-timestamp {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Add a Horizontal Separator Between the Text and Meta Information */
+.post-details::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 15px 0;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    #post-feed {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    #post-feed {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Post Actions */
+.post-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Like and Comment Buttons */
+.like-button,
+.comment-toggle {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.like-button:hover,
+.comment-toggle:hover {
+    background-color: #e0e0e0;
+}
+
+.comment-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+/* Comment Box at Bottom of Post */
+.comment-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+.comment-submit {
+    margin-top: 10px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-submit:hover {
+    background-color: #3498db;
+}
+
+.comments-list {
+    margin-top: 15px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+/* User Post Styling */
+.user-post {
+    background-color: #e3f2fd; /* Light blue background */
+    border-left: 5px solid #0c161f; /* Blue border */
+}
+
+/* Style for Other Users' Posts */
+.other-post {
+    background-color: #272726; /* Dark background for other users */
+    border-left: 5px solid #9a4f26; /* Green border */
+}
