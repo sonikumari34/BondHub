@@ -238,7 +238,7 @@ function addNotification(message) {
 
 function logout() {
         sessionStorage.clear();
-         localStorage.clear(); 
+        localStorage.clear(); 
         alert('Logged out successfully!');
         window.location.href = 'index.html';
 }
